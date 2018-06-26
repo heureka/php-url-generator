@@ -1,0 +1,115 @@
+{
+    "@scheme": "http",
+    
+    "only_host": {
+        "@host": "www.example.com"
+    },
+
+    "no_host": {
+        "@scheme": "https"
+    },
+
+    "invalid_scheme": {
+        "@scheme": "VNNČ",
+        "@host": "www.example.com"
+    },
+
+    "very": {
+        "@host": "www.example.com",
+        "@path": "very",
+        "deep": {
+            "@path": "very/deep",
+            "structure": {
+                "@path": "very/deep/structure",
+                "with": {
+                    "@path": "very/deep/structure/with",
+                    "advance": {
+                        "@path": "very/deep/structure/with/advance",
+                        "heredity": {
+                            "@path": "very/deep/structure/with/advance",
+                            "@fragment": "heredity"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    
+    "path_test": {
+        "@host": "www.example.com",
+        "@query": {
+            "some_param": "sp"
+        },
+        "with_leading_slash": {"@path": "/alohamora"},
+        "without_slashes": {"@path": "alohamora"},
+        "with_trailing_slash": {"@path": "alohamora/"},
+        "with_both_slashes": {"@path": "/alohamora/"},
+        "slash_only": {"@path": "/"},
+        "empty": {"@path": ""}
+    },
+    
+    "query_params_test": {
+        "@host": "www.example.com",
+        "@query": {
+            "some_query_param": "sqp",
+            "some_other_query_param": "soqp"
+        },
+
+        "without_params": {
+            "@query": {}
+        },
+
+        "with_overloaded_params": {
+            "@query": {
+                "another_param": "ap"
+            }
+        }
+    },
+
+    "fully_parametric_site": {
+        "@host": "{host}:{port}",
+        "@path": "{path}",
+
+        "with_param": {
+            "@query": {
+                "some_query_param": "q"
+            },
+
+            "and_fragment": {
+                "@fragment": "{fragment}"
+            }
+        }
+    },
+
+    "comparative_condition": {
+        "@host": "www.noenv.com",
+
+        "conflictive": {
+            "@path": "/outer"
+        },
+
+        "{env}=production": {
+            "@host": "www.example.com"
+        },
+        "{env}=dev": {
+            "@host": "www.example.dev.czech"
+        },
+        "{env}=local": {
+            "@host": "localhost"
+        },
+        "{lang}=cz": {
+            "@path": "/hledani",
+
+            "conflictive": {
+                "@path": "/inner"
+            },
+
+            "{another}=10": {
+                "@path": "/another"
+            }
+        },
+        "{lang}=pl": {
+            "@path": "/sukanie"
+        }
+    }
+}
