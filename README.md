@@ -1,4 +1,10 @@
-# Url generator
+# Url Generator
+UrlGenerator is a simple library that allows you to generate URLs from a single JSON configuration for different programming languages.
+
+## Other programming languages
+There is also [UrlGenerator for Python](https://github.com/heureka/py-url-generator), which accepts the same configuration,
+so you can combine multiple projects in Python and PHP using same configuration file.
+
 ## Usage
 #### Basic usage:
 Main entrypoint to this library is function `getUrl` which accepts the following parameters:
@@ -18,13 +24,14 @@ example: `["lang" => "sk", "productId" => 12345]`
 ```php
 use UrlGenerator\UrlGenerator;
 
-$ug = new UrlGenerator('routes.json', ["env" => "dev", "lang" => "sk"]);
+$ug = new UrlGenerator('path/to/your/config.json', ["env" => "dev", "lang" => "en"]);
 $ug->getUrl("heureka.category.index", ["productId" => 12345]);
 ```
 
 ## Configuration
-Route configuration files lays in `config/routes.json`.
-Routes are part of this repository to ensure reusability of defined routes trought all of our services.
+Path to configuration file must be passed trough the constructor to the UrlGenerator instance (as a first parameter).
+
+Check `tests/test.json` for better understanding.
 
 Structure is plain Json (planning support for comments in future).
 
@@ -173,8 +180,13 @@ In following example we define `{lang}=spanish` condition, so if we call `getUrl
 Note that rules are processed from top to bottom in file. Latter rule has priority so *template condition* must be
 placed after overloaded values to have effect.
 
-## Author
-The author of the first idea is [Pavel Škoda](https://github.com/skooda). 
+## Contributing rules
+The main advantage of the URLGenerator is that it can share the configuration through multiple programming languages.
+Therefore, it is necessary to keep the individual language versions compatible with each other.
+
+So, when you create a pull-request into this repository, please concider contributing the same functionality to the other repositories listed in [Other programming languages](#other-programming-languages) section. 
+
+Project owners should never merge code which breaks compatibility with other language versions.
 
 ## So ...
 Happy URLing ;)
