@@ -117,7 +117,7 @@ Note that *URL Generator* uses the `@host` *keyword* in `example.russian` *path 
 {
     "@scheme": "https",
     "example": {
-        "@host": "www.example.com"
+        "@host": "www.example.com",
         "@path": "/information"
  
         "russian": {
