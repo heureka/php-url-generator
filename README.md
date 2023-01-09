@@ -40,7 +40,9 @@ Simple configuration file can look like this:
 {
     "some_example_site": {
         "@scheme": "https",
+        "@subdomain": "www",
         "@host": "example.com",
+        "@host_postfix": "test.dev",
         "@path": "/{category_id}/search",
         "@params": {
             "query": "q"
@@ -60,10 +62,20 @@ This represents URL scheme by [RFC1738](https://tools.ietf.org/html/rfc1738), us
 
 example: `"@scheme": "https"`
 
+#### `@subdomain`
+This represents subdomain.
+
+example: `"@subdomain": "www"`
+
 #### `@host`
 This represents host (and can contain port if necessary)
 
 example: `"@host": "www.heureka.cz"`
+
+#### `@host_postfix`
+This represents postfix for host. For example for dev environment.
+
+example: `"@host_postfix": "test.dev"`
 
 #### `@path`
 This represents URL path by [RFC1738](https://tools.ietf.org/html/rfc1738) like `/` for index or `/iphone-7/recenze` for product detail

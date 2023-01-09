@@ -3,11 +3,14 @@
 namespace tests\php;
 
 use UrlGenerator\UrlGenerator;
+use PHPUnit\Framework\TestCase;
 
-class UrlGeneratorTest extends \PHPUnit_Framework_TestCase
+class UrlGeneratorTest extends TestCase
 {
 
-    public function setUp()
+    private $ug;
+
+    public function setUp(): void
     {
         $this->ug = new UrlGenerator(__DIR__ . '/test.json', []);
     }
@@ -85,6 +88,9 @@ class UrlGeneratorTest extends \PHPUnit_Framework_TestCase
         yield ['comparative_condition.conflictive', ['env' => 'dev'], 'http://www.example.dev.czech/outer'];
         yield ['comparative_condition.conflictive', ['env' => 'dev', 'lang' => 'pl'], 'http://www.example.dev.czech/sukanie'];
         yield ['comparative_condition.conflictive', ['env' => 'dev', 'lang' => 'cz'], 'http://www.example.dev.czech/inner'];
+
+        yield ['subdomain', ['subdomain'=> 'some-subdomain'], 'http://some-subdomain.example.com'];
+        yield ['host_postfix', [], 'http://some-subdomain.example.com.dev.czech'];
 
     }
 

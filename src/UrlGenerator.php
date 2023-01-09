@@ -13,13 +13,18 @@ class UrlGenerator
         '@tld',
         '@path',
         '@query',
-        '@fragment'
+        '@fragment',
+        '@subdomain',
+        '@host_postfix',
     ];
 
     const ALLOWED_URL_SCHEMES = [
         'http',
         'https'
     ];
+    
+    private $params = [];
+    private $config = [];
 
     /**
      * @param array $params Global parameters
@@ -139,8 +144,10 @@ class UrlGenerator
             throw new UrlGeneratorException('Missing required property @host');
         }
         $host = rtrim($urlParts['@host'], '/');
+        $subdomain = !empty($urlParts['@subdomain']) ? preg_replace('/\s+$/m', '', $urlParts['@subdomain']) : '';
+        $hostPostfix = !empty($urlParts['@host_postfix']) ? preg_replace('/\s+$/m', '', $urlParts['@host_postfix']) : '';
 
-        $url = "$scheme://$host";
+        $url = "$scheme://" . ($subdomain ? "$subdomain." : '') . "$host" . ($hostPostfix ? ".$hostPostfix" : "");
 
         if (isset($urlParts['@path'])) {
             $url .= '/' . ltrim($urlParts['@path'], '/');
