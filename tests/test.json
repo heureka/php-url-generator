@@ -111,5 +111,14 @@
         "{lang}=pl": {
             "@path": "/sukanie"
         }
+    },
+    "subdomain": {
+        "@host": "example.com",
+        "@subdomain": "{subdomain}"
+    },
+    "host_postfix": {
+        "@host": "example.com",
+        "@host_postfix": "dev.czech",
+        "@subdomain": "some-subdomain"
     }
 }
