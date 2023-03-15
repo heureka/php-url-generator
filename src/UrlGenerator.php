@@ -154,7 +154,11 @@ class UrlGenerator
         }
 
         if ($queryString !== "") {
-            $url .= '?' . $queryString;
+            if (strpos($urlParts['@path'], '?') !== false) {
+                $url .= '&' . $queryString;
+            } else {
+                $url .= '?' . $queryString;
+            }
         }
 
         if (isset($urlParts['@fragment'])) {
